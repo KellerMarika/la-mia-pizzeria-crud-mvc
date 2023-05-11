@@ -49,6 +49,7 @@ namespace la_mia_pizzeria_static
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
