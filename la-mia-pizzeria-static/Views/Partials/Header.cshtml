@@ -1,0 +1,373 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<header>
+<nav class="navbar">
+    <div class="logo">
+        <a class="logo_text" href="#">
+            <img src="https://raw.githubusercontent.com/yesidacosta/web-navbars/main/navbar-two-row/img/logo.png" alt="NeosPizza">
+        </a>
+    </div>
+    <ul class="menu">
+        <li class="menu_item">
+            <a href="" class="menu_link">Ordina</a>
+        </li>
+        <li class="menu_item">
+            <a href="" class="menu_link">Chi siamo</a>
+        </li>
+        <li class="menu_item">
+            <a href="" class="menu_link">Contattaci</a>
+        </li>
+    </ul>
+
+    <div class="phone">
+        <span class="phone_order">Chiama al numero:</span>
+        <span class="phone_number">777-888-2323</span>
+    </div>
+
+    <div class="login">
+        <a class="login_link login_link--button" href="#">Login</a>
+        <a class="login_link" href="#">Signup</a>
+    </div>
+
+    <div class="btn_pizza fas fa-pizza-slice"></div>
+    <div class="btn_login fas fa-user"></div>
+    <div class="btn_menu fas fa-bars"></div>
+</nav>
+<section class="pizza-fast">
+    <div class="col-full">
+        <ul class="pizza_list">
+            <li class="pizza_item">
+                <i class="fas fa-pizza-slice"></i>
+                <a class="pizza_link" href="#">Pizza al Trancio</a>
+            </li>
+            <li class="pizza_item">
+                <img src="https://raw.githubusercontent.com/yesidacosta/web-navbars/main/navbar-two-row/img/pizza_2.svg" alt="" width="32">
+                <a class="pizza_link" href="/Pizza/Index">Tonde</a>
+            </li>
+            <li class="pizza_item">
+                <i><img src="https://raw.githubusercontent.com/yesidacosta/web-navbars/main/navbar-two-row/img/pizza_3.svg" alt="" width="32"></i>
+                <a class="pizza_link" href="#">Mezzi Metri</a>
+            </li>
+            <li class="pizza_item">
+                <i><img src="https://raw.githubusercontent.com/yesidacosta/web-navbars/main/navbar-two-row/img/pizza_5.svg" alt="" width="32"></i>
+                <a class="pizza_link" href="#">Fritture</a>
+            </li>
+            <li class="pizza_item">
+                <i><img src="https://raw.githubusercontent.com/yesidacosta/web-navbars/main/navbar-two-row/img/pizza_6.svg" alt="" width="40"></i>
+                <a class="pizza_link" href="#">Combo Menù</a>
+            </li>
+        </ul>
+    </div>
+</section>
+</header>
+
+<script src="https://kit.fontawesome.com/832b6972f7.js" crossorigin="anonymous"></script>
+
+<script>
+    const menu = document.querySelector(".menu");
+    const pizza = document.querySelector(".pizza_list");
+    const login = document.querySelector(".login");
+
+    document.addEventListener("click", (e) => {
+        if (e.target.matches(".btn_menu")) {
+            menu.classList.toggle("menu--show");
+            pizza.classList.remove("pizza_list--show");
+            login.classList.remove("login--show");
+        }
+        if (e.target.matches(".btn_pizza")) {
+            pizza.classList.toggle("pizza_list--show");
+            menu.classList.remove("menu--show");
+            login.classList.remove("login--show");
+        }
+
+        if (e.target.matches(".btn_login")) {
+            login.classList.toggle("login--show");
+            pizza.classList.remove("pizza_list--show");
+            menu.classList.remove("menu--show");
+        }
+    });
+</script>
+
+<style>
+
+@@import url("https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;300;400;500;600;700&display=swap");
+@@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@@font-face {
+  font-family: "ThirstyScript";
+  src: url("../font/ThirstyScriptExtraBoldDemo.otf");
+}
+
+@@font-face {
+  font-family: "Yanone Kaffeesatz";
+  src: url("../font/YanoneKaffeesatz-VariableFont_wght.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  background-color: #faf6f2;
+  min-width: 400px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  margin: 0 auto;
+}
+header{
+        position: fixed;
+        top:0;
+        left:0;
+        right:auto;
+        width:100%;
+}
+
+/*Navbar*/
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 120px;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  border-bottom: 1px solid #ede5e552;
+  background-color: #c00a27;
+}
+
+.col-full {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90vw;
+  max-width: 1200px;
+}
+
+/*Logo*/
+.logo_text {
+  color: #e6e6e6;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+}
+
+.logo_text img {
+  height: auto;
+  width: calc(150px + 4vw);
+}
+
+/*Menú principal*/
+.menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  background: #414141;
+  top: -250px;
+  transition: all 0.4s;
+  z-index: 3;
+}
+
+.menu_item {
+  padding: 15px 15px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.95em;
+  font-weight: bold;
+  margin: 0 auto;
+  margin-top: 6px;
+}
+
+.menu_link {
+  color: #e6e6e6;
+  font-weight: bold;
+}
+.menu_link::after {
+  content: " ";
+  display: block;
+  height: 2px;
+  width: 42px;
+  margin: 0 auto;
+  margin-top: 6px;
+  background-color: #ffae00;
+  visibility: hidden;
+}
+.menu_link:hover::after {
+  visibility: visible;
+}
+
+.menu_link:hover {
+  margin-top: -6px;
+  color: #ccc8c8;
+}
+
+/*Telefono de domicilios*/
+.phone {
+  text-align: right;
+  display: none;
+}
+.phone_order {
+  color: #ffae00;
+}
+.phone_number {
+  display: block;
+  color: #e6e6e6;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 800;
+  font-size: 1em;
+}
+
+/*Seccion de login*/
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  background: #414141;
+  top: -250px;
+  transition: all 0.4s;
+  z-index: 2;
+}
+
+.login_link {
+  color: #e6e6e6;
+  padding: 0.6em 1.5em;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.login_link--button {
+  padding: 10px 20px;
+  background-color: #8ca93e;
+  border-radius: 16px;
+}
+
+.btn_menu,
+.btn_login,
+.btn_pizza {
+  display: inline-block;
+  font-size: 25px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.menu--show {
+  top: 120px !important;
+}
+.pizza_list--show {
+  top: 120px !important;
+}
+.login--show {
+  top: 120px !important;
+}
+
+/*--------------------*/
+.pizza-fast {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: #c00a27;
+}
+
+.pizza_list {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  gap: 4px;
+  height: auto;
+  background: #414141;
+  top: -100%;
+  transition: all 0.4s;
+  z-index: 1;
+}
+
+.pizza_item {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  height: 100%;
+  font-family: "Open Sans", sans-serif;
+  padding: 0 15px;
+  color: #e6e6e6;
+  opacity: 0.8;
+  padding: 5px;
+}
+
+.pizza_item i {
+  font-size: 2em;
+}
+
+.pizza_item:hover {
+  opacity: initial;
+}
+
+.pizza_link {
+  color: #e6e6e6;
+  text-align: center;
+}
+
+@@media screen and (min-width: 440px) {
+  .btn_pizza {
+    display: none !important;
+  }
+
+  .pizza_list {
+    all: initial;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    font-family: "Open Sans", sans-serif;
+    background-color: #c00a27;
+  }
+}
+
+@@media screen and (min-width: 680px) {
+  .phone {
+    display: block;
+  }
+  .navbar {
+    padding-top: 1.2em;
+  }
+}
+
+@@media screen and (min-width: 1000px) {
+  .menu {
+    all: initial;
+    display: flex;
+  }
+  .login {
+    display: inline-block;
+    position: relative;
+    top: inherit;
+    left: inherit;
+    width: auto;
+    height: auto;
+    background: none;
+  }
+
+  .btn_menu,
+  .btn_login {
+    display: none !important;
+  }
+
+  .pizza_list {
+    justify-content: space-evenly;
+  }
+}
+
+</style>

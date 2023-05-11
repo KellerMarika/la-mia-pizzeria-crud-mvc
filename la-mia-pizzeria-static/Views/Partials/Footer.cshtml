@@ -1,0 +1,90 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="news-container">
+    <div class="news-heading">NEWS</div>
+
+    <div class="news">
+        <a href="#" class="news-single active">
+            sconto 20% ogni secondo mercoledì del mese!
+        </a>
+
+        <a href="#" class="news-single">
+           Cocacola da 1lt in omaggio con ogni mezzometro acquistato!
+        </a>
+
+        <a href="#" class="news-single">
+           arriva la pizza Al trancio!.
+        </a>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/livebloggerofficial/News-Ticker@main/main.js"></script>
+
+<style>
+@@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+body,
+.centered-top-container.sticky {
+}    
+.news-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  font-size: 16px;
+  background: #C8102E;
+  color: #fff000;
+  text-shadow: 3px 3px #333;
+  padding: 10px 32px;
+  display: flex;
+  box-shadow: 0 4px 40px -8px rgb(0, 51, 98);
+  overflow: hidden;
+	font-family:'Oswald',serif;
+	z-index: 500;
+	word-break: normal
+}
+
+.news-container::after {
+  position: absolute;
+  content: &quot;&quot;;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(transparent, #003262);
+}
+
+.news-container .news-heading {
+  font-weight: bold;
+  padding-right: 20px;
+  margin-right: 20px;
+  border-right: 1px solid #fff;
+}
+
+.news-container .news {
+  position: relative;
+  width: 100%;
+}
+
+.news-container .news-single {
+  color: #fff;
+  text-decoration: none;
+  font-weight: normal;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(-8px);
+  transition: all 400ms ease;
+  pointer-events: none;
+}
+
+.news-container .news-single.active {
+  opacity: 1;
+  transform: translateY(0);
+	pointer-events: auto;
+}
+</style>

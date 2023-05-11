@@ -1,0 +1,100 @@
+﻿
+@model PizzaForm
+
+<div class="container">
+    <h1>Edit pizza n#@* @Pizza.Id *@</h1>
+    <form asp-controller="Pizza" asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
+
+        @*name*@
+        <div class="form-group col col-6">
+            <div class="mb-3">
+                <label for="name">Name</label>
+                <input asp-for="Pizza.Name" id="name" class="form-control" placeholder="Enter pizza's name" />
+                <span asp-validation-for="Pizza.Name" class="text-danger"></span>
+            </div>
+        </div>
+
+        @*category*@
+        <div class="form-group col col-4">
+            <label for="name"> Pizza's Category</label>
+
+            @*   <select asp-for="Pizza.CategoryId" class="form-select px-4">
+            <option value=""></option>
+            @foreach (Category cat in Model.Categories)
+            {
+            <option value="@cat.Id" "@(Model.Pizza.CategoryId == cat.Id? 'selected' : '')">@cat.Name</option>
+
+            }
+            </select>*@
+
+            <select asp-for="Pizza.CategoryId" class="form-select px-4" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))">
+                <option value=""></option>
+            </select>
+            <span asp-validation-for="Pizza.CategoryId" class="text-danger"></span>
+        </div>
+
+        @*price*@
+        <div class="form-group col col-2">
+            <div class="mb-3">
+                <label for="price">Price</label>
+                <input type="number" asp-for="Pizza.Price" id="price" step="0.01" class="form-control" placeholder="enter pizza price" />
+                <span asp-validation-for="Pizza.Price" class="text-danger"></span>
+            </div>
+        </div>
+
+        @*img*@
+        <div class="form-group col">
+            <div class="mb-3">
+                <label for="img">Image</label>
+                <input asp-for="Pizza.Img" type="file" id="img" class="form-control" placeholder="Enter pizza's Image" />
+                <span asp-validation-for="Pizza.Img" class="text-danger"></span>
+            </div>
+        </div>
+
+        @*desc*@
+        <div class="form-group">
+            <div class="mb-3">
+                <label for="description">Descrition</label>
+                <textarea asp-for="Pizza.Description" id="description" class="form-control" placeholder="Enter pizza's description"> </textarea>
+                <span asp-validation-for="Pizza.Description" class="text-danger"></span>
+            </div>
+        </div>
+
+        @*ingredienti*@
+        <div class="form-group col col-12 ps-3">
+            <label>Ingredients:</label>
+            @*            <select asp-for="SelectedIngredients"
+            multiple="multiple"
+            size="10"
+            class="form-control mb-2 mr-sm-2 ml-sm-3 leftList"
+            asp-items="@Model.Ingredients">
+            </select>*@
+
+            <div class="mb-3 row row-cols-6">
+                @foreach (var ingredient in Model.Ingredients)
+                {
+                    <div class="form-check  px-4 col">
+                        @*questa cosa fa schifo--- pretendo un if ternario!*@
+
+                        <input type="checkbox" id="@($"chk{ingredient.Value}")" name="SelectedIngredients" value="@ingredient.Value" class="form-check-input" @(ingredient.Selected ? "checked" : "")>
+
+                      @*  @if (ingredient.Selected = true)
+                        {
+                            <input type="checkbox" id="@($"chk{ingredient.Value}")" name="SelectedIngredients" value="@ingredient.Value" class="form-check-input" checked>
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="@($"chk{ingredient.Value}")" name="SelectedIngredients" value="@ingredient.Value" class="form-check-input">
+                        }*@
+                     
+                        <label class="form-check-label" for="@($"chk{ingredient.Value}")">@ingredient.Text</label>
+                    </div>
+                }
+                <span asp-validation-for="Ingredients" class="text-danger"></span>
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-danger " value="Aggiungi pizza al Menù!">
+    </form>
+</div>
