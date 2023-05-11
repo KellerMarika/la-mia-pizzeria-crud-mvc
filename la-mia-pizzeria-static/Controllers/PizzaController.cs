@@ -91,7 +91,7 @@ namespace la_mia_pizzeria_static.Controllers
                 using (PizzeriaDbContext Pizzeria = new PizzeriaDbContext())
                 {  
                     Pizza PizzaToCreate= (new Pizza(Request.Pizza.Name, Request.Pizza.Description, Request.Pizza.Img, Request.Pizza.Price, Request.Pizza.CategoryId));
-                    if(Request.Ingredients != null)
+                    if(Request.SelectedIngredients != null)
                     {
                         foreach (string selectedIngId in Request.SelectedIngredients)
                         {
@@ -115,7 +115,10 @@ namespace la_mia_pizzeria_static.Controllers
         {
                 using (PizzeriaDbContext Pizzeria = new PizzeriaDbContext())
             {
-                Pizza? pizzaToEdit = Pizzeria.Pizzas.Where(p => p.Id == Id).FirstOrDefault();
+                Pizza? pizzaToEdit = Pizzeria.Pizzas.Where(p => p.Id == Id)
+                    .Include(Pizza=>Pizza.Ingredients)
+                    .FirstOrDefault();
+
                 if (pizzaToEdit == null)
                 {
                     string message = $"nessuna pizza trovata con id= {Id}";
@@ -198,7 +201,7 @@ namespace la_mia_pizzeria_static.Controllers
                     pizzaToEdit.Img = Request.Pizza.Img;
                     pizzaToEdit.CategoryId = Request.Pizza.CategoryId;
 
-                    Pizzeria.Pizzas.Add(pizzaToEdit);
+                    //Pizzeria.Pizzas.Add(pizzaToEdit);
                     Pizzeria.SaveChanges();
 
                     return RedirectToAction("Index");//devo aggiungere toast_________________ toast evrywere!!!

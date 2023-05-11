@@ -47,7 +47,7 @@ namespace la_mia_pizzeria_static.Models
 
 
         //relations
-        public List<Ingredient>? Ingredients { get; set; }
+        public List<Ingredient>? Ingredients { get; set; }=new List<Ingredient>() { };
 
         [Column("category_id")]
         public  int CategoryId { get; set; }
