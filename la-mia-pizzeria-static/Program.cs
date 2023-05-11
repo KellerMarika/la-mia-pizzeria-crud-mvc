@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using la_mia_pizzeria_static.Models;
 
 namespace la_mia_pizzeria_static
 {
@@ -8,6 +11,13 @@ namespace la_mia_pizzeria_static
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+                        var connectionString = builder.Configuration.GetConnectionString("PizzeriaDbContextConnection") ?? throw new InvalidOperationException("Connection string 'PizzeriaDbContextConnection' not found.");
+
+                                    builder.Services.AddDbContext<PizzeriaDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
+                                                builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<PizzeriaDbContext>();
 
 
             // Add services to the container.
